@@ -18,7 +18,6 @@ var hex4 = document.querySelector("hex-4");
 var hex5 = document.querySelector("hex-5");
 
 
-
 // event listeners
 
 
