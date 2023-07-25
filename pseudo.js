@@ -33,18 +33,3 @@
     // if palette is removed, remove from data model
     // assign delete button to id?
     // palette removed from the page
-
-// data model?   
-// colorPalettes = [
-//     {
-//     id: 1
-// hexcodes: ["FFAAAD", "DS4121", "BC43A2", "FDSA14", "DASM42"]
-//      },
-//     {
-//     id: 2
-//     hex: 
-//     }
-// ]
-
-// var box1 = colorPalettes.hexcodes[0]
-// var box2 = colorPalettes.hexcodes[1]
