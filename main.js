@@ -21,10 +21,12 @@ var hex5 = document.querySelector("#hex-5");
 var newPaletteBtn = document.querySelector(".new-palette-btn");
 
 // event listeners
-newPaletteBtn.addEventListener("click", loadPalette);
+newPaletteBtn.addEventListener("click", randomPalette);
 
 //global variables
-var currentPalette = "";
+var currentPalette;
+
+var savedPalettes = []
 
 // randomize hexcode
 function randomHex() {
@@ -37,7 +39,6 @@ function randomHex() {
     return `#${hexcode}`;
     }
 
-
 function createPalette(color1, color2, color3, color4, color5) {
        var palette = {
         id: Date.now(),
@@ -47,31 +48,39 @@ function createPalette(color1, color2, color3, color4, color5) {
         color4: color4,
         color5: color5
     }
-    return palette;
+    currentPalette = palette
+    loadPalette()
+}
+
+function createColor() {
+  var color = {
+    hexCode: randomHex(), 
+    isLocked: false,
+    id: Date.now()
+    };
+    return color
 }
 
 function randomPalette() {
-    var color1 = randomHex();
-    var color2 = randomHex();
-    var color3 = randomHex();
-    var color4 = randomHex();
-    var color5 = randomHex();
-var currentPalette = createPalette(color1, color2, color3, color4, color5)
-console.log(currentPalette);
-    return currentPalette;
+    var color1 = createColor()
+    var color2 = createColor()
+    var color3 = createColor()
+    var color4 = createColor()
+    var color5 = createColor()
+  createPalette(color1, color2, color3, color4, color5)
 }
 
 function loadPalette() {
-    var currentPalette = randomPalette()
-    box1.style.backgroundColor = currentPalette.color1;
-    box2.style.backgroundColor = currentPalette.color2;
-    box3.style.backgroundColor = currentPalette.color3;
-    box4.style.backgroundColor = currentPalette.color4;
-    box5.style.backgroundColor = currentPalette.color5;
+    console.log(currentPalette)
+    box1.style.backgroundColor = currentPalette.color1.hexCode;
+    box2.style.backgroundColor = currentPalette.color2.hexCode;
+    box3.style.backgroundColor = currentPalette.color3.hexCode;
+    box4.style.backgroundColor = currentPalette.color4.hexCode;
+    box5.style.backgroundColor = currentPalette.color5.hexCode;
 
-    hex1.innerText = currentPalette.color1;
-    hex2.innerText = currentPalette.color2;
-    hex3.innerText = currentPalette.color3;
-    hex4.innerText = currentPalette.color4;
-    hex5.innerText = currentPalette.color5;
+    hex1.innerText = currentPalette.color1.hexCode;
+    hex2.innerText = currentPalette.color2.hexCode;
+    hex3.innerText = currentPalette.color3.hexCode;
+    hex4.innerText = currentPalette.color4.hexCode;
+    hex5.innerText = currentPalette.color5.hexCode;
 }
