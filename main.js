@@ -94,12 +94,13 @@ function createPalette(color1, color2, color3, color4, color5) {
     loadPalette()
 }
 
-function createColor(isLocked) {
+function createColor() {
   var color = {
     hexCode: randomHex(), 
-    isLocked: isLocked,
+    isLocked: false,
     id: Date.now()
     };
+    return color;
   }
 
 function randomPalette() {
