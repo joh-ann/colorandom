@@ -9,6 +9,11 @@ var box2 = document.querySelector("#box-2");
 var box3 = document.querySelector("#box-3");
 var box4 = document.querySelector("#box-4");
 var box5 = document.querySelector("#box-5");
+var mini1 = document.querySelector("#mini-1");
+var mini2 = document.querySelector("#mini-2");
+var mini3 = document.querySelector("#mini-3");
+var mini4 = document.querySelector("#mini-4");
+var mini5 = document.querySelector("#mini-5");
 
 // hexcodes
 var hex1 = document.querySelector("#hex-1");
@@ -17,10 +22,17 @@ var hex3 = document.querySelector("#hex-3");
 var hex4 = document.querySelector("#hex-4");
 var hex5 = document.querySelector("#hex-5");
 
+var aside = document.querySelector(".saved-palettes-wrapper");
+var savedPalettesView = document.querySelector(".saved-palettes");
+
 // lock/unlock icons
 var toggleIcon = document.querySelectorAll(".toggle-icon");
 var lockedIcon = document.querySelectorAll(".locked-icon");
 var unlockedIcon = document.querySelectorAll(".unlocked-icon");
+
+//button
+var newPaletteBtn = document.querySelector(".new-palette-btn");
+var savePaletteBtn = document.querySelector(".save-palette-btn");
 
 for (var i = 0; i < toggleIcon.length; i++) {
   toggleIcon[i].addEventListener("click", switchIcon);
@@ -41,12 +53,16 @@ function switchIcon(event) {
   }
 } 
 
-//button
-var newPaletteBtn = document.querySelector(".new-palette-btn");
-
 // event listeners
 newPaletteBtn.addEventListener("click", randomPalette);
-boxes.addEventListener("click", toggleLock);
+// boxes.addEventListener("click", toggleLock);
+
+savePaletteBtn.addEventListener("click", function() {
+  aside.classList.remove("hidden")
+  savePalette(currentPalette);
+  displaySavedPalettes();
+  
+});
 
 //global variables
 var currentPalette;
@@ -108,4 +124,32 @@ function loadPalette() {
     hex3.innerText = currentPalette.color3.hexCode;
     hex4.innerText = currentPalette.color4.hexCode;
     hex5.innerText = currentPalette.color5.hexCode;
+}
+
+function savePalette(currentPalette) {
+  mini1.style.backgroundColor = currentPalette.color1.hexCode;
+  mini2.style.backgroundColor = currentPalette.color2.hexCode;
+  mini3.style.backgroundColor = currentPalette.color3.hexCode;
+  mini4.style.backgroundColor = currentPalette.color4.hexCode;
+  mini5.style.backgroundColor = currentPalette.color5.hexCode;
+  // add current palette to saved array
+  savedPalettes.push(currentPalette);
+}
+
+function displaySavedPalettes() {
+  var newHTML = ``;
+
+  for (var i = 0; i < savedPalettes.length; i++) {  
+  var palette = savedPalettes[i]; // get current savedpalette
+  var miniBoxesHTML = `` // store mini boxes HTML for current palette
+  
+  miniBoxesHTML += `<div class="mini-box" style="background-color: ${palette.color1.hexCode};"></div>`;
+  miniBoxesHTML += `<div class="mini-box" style="background-color: ${palette.color2.hexCode};"></div>`;
+  miniBoxesHTML += `<div class="mini-box" style="background-color: ${palette.color3.hexCode};"></div>`;
+  miniBoxesHTML += `<div class="mini-box" style="background-color: ${palette.color4.hexCode};"></div>`;
+  miniBoxesHTML += `<div class="mini-box" style="background-color: ${palette.color5.hexCode};"></div>`;
+  // append to newHTML
+  newHTML += miniBoxesHTML;
+  }
+  savedPalettesView.innerHTML = newHTML;
 }
