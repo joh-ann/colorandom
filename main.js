@@ -18,19 +18,28 @@ var hex4 = document.querySelector("#hex-4");
 var hex5 = document.querySelector("#hex-5");
 
 // lock/unlock icons
-var boxes = document.querySelectorAll(".box")
+var toggleIcon = document.querySelectorAll(".toggle-icon");
+var lockedIcon = document.querySelectorAll(".locked-icon");
+var unlockedIcon = document.querySelectorAll(".unlocked-icon");
 
-// var box1Unlocked = document.querySelector("#unlocked-1");
-// var box2Unlocked = document.querySelector("#unlocked-2");
-// var box3Unlocked = document.querySelector("#unlocked-3");
-// var box4Unlocked = document.querySelector("#unlocked-4");
-// var box5Unlocked = document.querySelector("#unlocked-5");
+for (var i = 0; i < toggleIcon.length; i++) {
+  toggleIcon[i].addEventListener("click", switchIcon);
+}
 
-// var box1Locked = document.querySelector("#locked-1");
-// var box2Locked = document.querySelector("#locked-2");
-// var box3Locked = document.querySelector("#locked-3");
-// var box4Locked = document.querySelector("#locked-4");
-// var box5Locked = document.querySelector("#locked-5");
+function switchIcon(event) {
+  var displayedIcon = event.target;
+  if (displayedIcon.classList.contains("unlocked-icon")) {
+    displayedIcon.src = "./assets/unlocked.png";
+    displayedIcon.alt = "unlocked icon";
+    displayedIcon.classList.remove("unlocked-icon");
+    displayedIcon.classList.add("locked-icon");
+  } else {
+    displayedIcon.src = "./assets/locked.png";
+    displayedIcon.alt = "locked icon";
+    displayedIcon.classList.remove("locked-icon");
+    displayedIcon.classList.add("unlocked-icon");
+  }
+} 
 
 //button
 var newPaletteBtn = document.querySelector(".new-palette-btn");
@@ -99,10 +108,4 @@ function loadPalette() {
     hex3.innerText = currentPalette.color3.hexCode;
     hex4.innerText = currentPalette.color4.hexCode;
     hex5.innerText = currentPalette.color5.hexCode;
-}
-
-function toggleLock() {
-    for (var i = 0; i < boxes.length; i++) {
-
-    }
 }
