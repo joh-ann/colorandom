@@ -69,6 +69,7 @@ var currentPalette;
 
 var savedPalettes = []
 
+
 // randomize hexcode
 function randomHex() {
     var hexcode = "";
