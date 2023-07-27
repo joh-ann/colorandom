@@ -74,7 +74,12 @@ function createPalette(color1, color2, color3, color4, color5) {
         color5: color5
     }
     currentPalette = palette
-    loadPalette()
+    
+    if (color1.isLocked === false) {
+      color1 = createColor() 
+    } else {
+       loadPalette()
+  }
 }
 
 function createColor() {
