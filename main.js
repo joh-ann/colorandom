@@ -17,11 +17,36 @@ var hex3 = document.querySelector("#hex-3");
 var hex4 = document.querySelector("#hex-4");
 var hex5 = document.querySelector("#hex-5");
 
+// lock/unlock icons
+var toggleIcon = document.querySelectorAll(".toggle-icon");
+var lockedIcon = document.querySelectorAll(".locked-icon");
+var unlockedIcon = document.querySelectorAll(".unlocked-icon");
+
+for (var i = 0; i < toggleIcon.length; i++) {
+  toggleIcon[i].addEventListener("click", switchIcon);
+}
+
+function switchIcon(event) {
+  var displayedIcon = event.target;
+  if (displayedIcon.classList.contains("unlocked-icon")) {
+    displayedIcon.src = "./assets/unlocked.png";
+    displayedIcon.alt = "unlocked icon";
+    displayedIcon.classList.remove("unlocked-icon");
+    displayedIcon.classList.add("locked-icon");
+  } else {
+    displayedIcon.src = "./assets/locked.png";
+    displayedIcon.alt = "locked icon";
+    displayedIcon.classList.remove("locked-icon");
+    displayedIcon.classList.add("unlocked-icon");
+  }
+} 
+
 //button
 var newPaletteBtn = document.querySelector(".new-palette-btn");
 
 // event listeners
 newPaletteBtn.addEventListener("click", randomPalette);
+boxes.addEventListener("click", toggleLock);
 
 //global variables
 var currentPalette;
