@@ -17,11 +17,27 @@ var hex3 = document.querySelector("#hex-3");
 var hex4 = document.querySelector("#hex-4");
 var hex5 = document.querySelector("#hex-5");
 
+// lock/unlock icons
+var boxes = document.querySelectorAll(".box")
+
+// var box1Unlocked = document.querySelector("#unlocked-1");
+// var box2Unlocked = document.querySelector("#unlocked-2");
+// var box3Unlocked = document.querySelector("#unlocked-3");
+// var box4Unlocked = document.querySelector("#unlocked-4");
+// var box5Unlocked = document.querySelector("#unlocked-5");
+
+// var box1Locked = document.querySelector("#locked-1");
+// var box2Locked = document.querySelector("#locked-2");
+// var box3Locked = document.querySelector("#locked-3");
+// var box4Locked = document.querySelector("#locked-4");
+// var box5Locked = document.querySelector("#locked-5");
+
 //button
 var newPaletteBtn = document.querySelector(".new-palette-btn");
 
 // event listeners
 newPaletteBtn.addEventListener("click", randomPalette);
+boxes.addEventListener("click", toggleLock);
 
 //global variables
 var currentPalette;
@@ -83,4 +99,10 @@ function loadPalette() {
     hex3.innerText = currentPalette.color3.hexCode;
     hex4.innerText = currentPalette.color4.hexCode;
     hex5.innerText = currentPalette.color5.hexCode;
+}
+
+function toggleLock() {
+    for (var i = 0; i < boxes.length; i++) {
+
+    }
 }
