@@ -35,18 +35,18 @@ var unlockedIcon = document.querySelectorAll(".unlocked-icon");
 var newPaletteBtn = document.querySelector(".new-palette-btn");
 var savePaletteBtn = document.querySelector(".save-palette-btn");
 
+// event listeners
+newPaletteBtn.addEventListener("click", randomPalette);
+
 for (var i = 0; i < toggleIcon.length; i++) {
   toggleIcon[i].addEventListener("click", displaySwitchIcon);
 }
 
-// event listeners
-newPaletteBtn.addEventListener("click", randomPalette);
-
-savePaletteBtn.addEventListener("click", function() {
+savePaletteBtn.addEventListener("click", function(event) {
   aside.classList.remove("hidden")
   savePalette(currentPalette);
   displaySavedPalettes();
-  
+  updateLockStatus(event)
 });
 
 //global variables
@@ -153,6 +153,22 @@ function displaySwitchIcon(event) {
 
   displayIcon(displayedIcon, unlocked);
   switchIconClass(displayedIcon, unlocked);
+}
+
+function updateLockStatus(event) {
+  var clickedColorId = parseInt(event.target.getAttribute('id'));
+
+  if (currentPalette.color1.id === clickedColorId) {
+    currentPalette.color1.isLocked = true;
+  } else if (currentPalette.color2.id === clickedColorId) {
+    currentPalette.color2.isLocked = true;
+  } else if (currentPalette.color3.id === clickedColorId) {
+    currentPalette.color3.isLocked = true;
+  } else if (currentPalette.color4.id === clickedColorId) {
+    currentPalette.color4.isLocked = true;
+  } else if (currentPalette.color5.id === clickedColorId) {
+    currentPalette.color5.isLocked = true;
+  }
 }
 
 function savePalette(currentPalette) {
