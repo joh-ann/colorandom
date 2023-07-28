@@ -43,6 +43,7 @@ newPaletteBtn.addEventListener("click", randomPalette);
 savePaletteBtn.addEventListener('click', function () {
   savePalette(currentPalette);
   displaySavedPalettes();
+  randomPalette()
 });
 //global variables
 var currentPalette;
