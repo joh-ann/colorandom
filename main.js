@@ -171,6 +171,7 @@ function updateLockStatus(event) {
   }
 }
 
+
 function savePalette(currentPalette) {
   mini1.style.backgroundColor = currentPalette.color1.hexCode;
   mini2.style.backgroundColor = currentPalette.color2.hexCode;
