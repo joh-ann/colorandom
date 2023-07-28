@@ -36,24 +36,8 @@ var newPaletteBtn = document.querySelector(".new-palette-btn");
 var savePaletteBtn = document.querySelector(".save-palette-btn");
 
 for (var i = 0; i < toggleIcon.length; i++) {
-  toggleIcon[i].addEventListener("click", switchIcon);
+  toggleIcon[i].addEventListener("click", displaySwitchIcon);
 }
-
-function switchIcon(event) {
-  var displayedIcon = event.target;
-  console.log("currentPalette", currentPalette)
-  if (displayedIcon.classList.contains("unlocked-icon")) {
-    displayedIcon.src = "./assets/unlocked.png";
-    displayedIcon.alt = "unlocked icon";
-    displayedIcon.classList.remove("unlocked-icon");
-    displayedIcon.classList.add("locked-icon");
-  } else {
-    displayedIcon.src = "./assets/locked.png";
-    displayedIcon.alt = "locked icon";
-    displayedIcon.classList.remove("locked-icon");
-    displayedIcon.classList.add("unlocked-icon");
-  }
-} 
 
 // event listeners
 newPaletteBtn.addEventListener("click", randomPalette);
@@ -140,6 +124,35 @@ function loadPalette() {
     hex3.innerText = currentPalette.color3.hexCode;
     hex4.innerText = currentPalette.color4.hexCode;
     hex5.innerText = currentPalette.color5.hexCode;
+}
+
+function displayIcon(displayedIcon, isLocked) {
+  if (isLocked) {
+    displayedIcon.src = "./assets/locked.png";
+    displayedIcon.alt = "locked icon";
+  } else {
+    displayedIcon.src = "./assets/unlocked.png";
+    displayedIcon.alt = "unlocked icon";
+  }
+}
+
+function switchIconClass(displayedIcon, isLocked) {
+  if (isLocked) {
+    displayedIcon.classList.remove("unlocked-icon");
+    displayedIcon.classList.add("locked-icon");
+  } else {
+    displayedIcon.classList.remove("locked-icon");
+    displayedIcon.classList.add("unlocked-icon");
+  }
+}
+
+function displaySwitchIcon(event) {
+  var displayedIcon = event.target;
+  console.log("currentPalette", currentPalette);
+  var unlocked = displayedIcon.classList.contains("unlocked-icon");
+
+  displayIcon(displayedIcon, unlocked);
+  switchIconClass(displayedIcon, unlocked);
 }
 
 function savePalette(currentPalette) {
