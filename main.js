@@ -1,4 +1,7 @@
-document.addEventListener('DOMContentLoaded', function () {});
+document.addEventListener("DOMContentLoaded", function() {
+console.log("content loaded")
+  randomPalette()
+});
 
 // query selectors
 // boxes
@@ -30,8 +33,28 @@ var lockedIcon = document.querySelectorAll('.locked-icon');
 var unlockedIcon = document.querySelectorAll('.unlocked-icon');
 
 //button
-var newPaletteBtn = document.querySelector('.new-palette-btn');
-var savePaletteBtn = document.querySelector('.save-palette-btn');
+var newPaletteBtn = document.querySelector(".new-palette-btn");
+var savePaletteBtn = document.querySelector(".save-palette-btn");
+
+for (var i = 0; i < toggleIcon.length; i++) {
+  toggleIcon[i].addEventListener("click", switchIcon);
+}
+
+function switchIcon(event) {
+  var displayedIcon = event.target;
+  console.log("currentPalette", currentPalette)
+  if (displayedIcon.classList.contains("unlocked-icon")) {
+    displayedIcon.src = "./assets/unlocked.png";
+    displayedIcon.alt = "unlocked icon";
+    displayedIcon.classList.remove("unlocked-icon");
+    displayedIcon.classList.add("locked-icon");
+  } else {
+    displayedIcon.src = "./assets/locked.png";
+    displayedIcon.alt = "locked icon";
+    displayedIcon.classList.remove("locked-icon");
+    displayedIcon.classList.add("unlocked-icon");
+  }
+} 
 
 // event listeners
 newPaletteBtn.addEventListener('click', randomPalette);
@@ -100,13 +123,25 @@ function createColor() {
   return color;
 }
 
+function changeColor(color) {
+//if there is an old color, let's modify that color based on locked value 
+if (color && color.isLocked) {
+    return color;
+  } 
+//else if there's not an old color, give it a new color
+return createColor()
+}
+
+
+//if the islocked property is false, generate new color. if true, don't generate color. the way were generating color is thru this function which is creating and returning a color object but the hex code property in this color object has the value of this other function randomhex and that's being invoked in thh Object. How can we prevent that function from running? if the islocked is true, we don't want the function randomhex to run. 
+
 function randomPalette() {
-  var color1 = createColor();
-  var color2 = createColor();
-  var color3 = createColor();
-  var color4 = createColor();
-  var color5 = createColor();
-  createPalette(color1, color2, color3, color4, color5);
+    var color1 = createColor()
+    var color2 = createColor()
+    var color3 = createColor()
+    var color4 = createColor()
+    var color5 = createColor()
+    createPalette(color1, color2, color3, color4, color5)
 }
 
 function loadPalette() {
