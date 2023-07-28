@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-
+console.log("content loaded")
+  randomPalette()
 });
 
 // query selectors
@@ -40,6 +41,7 @@ for (var i = 0; i < toggleIcon.length; i++) {
 
 function switchIcon(event) {
   var displayedIcon = event.target;
+  console.log("currentPalette", currentPalette)
   if (displayedIcon.classList.contains("unlocked-icon")) {
     displayedIcon.src = "./assets/unlocked.png";
     displayedIcon.alt = "unlocked icon";
@@ -103,12 +105,33 @@ function createColor() {
     return color;
   }
 
+function changeColor(color) {
+//if there is an old color, let's modify that color based on locked value 
+if (color && color.isLocked) {
+    return color;
+  } 
+//else if there's not an old color, give it a new color
+return createColor()
+}
+
+
+//if the islocked property is false, generate new color. if true, don't generate color. the way were generating color is thru this function which is creating and returning a color object but the hex code property in this color object has the value of this other function randomhex and that's being invoked in thh Object. How can we prevent that function from running? if the islocked is true, we don't want the function randomhex to run. 
+
 function randomPalette() {
+  console.log(currentPalette);
+  if (currentPalette) {
+    var color1 = changeColor(currentPalette.color1)
+    var color2 = changeColor(currentPalette.color2)
+    var color3 = changeColor(currentPalette.color3)
+    var color4 = changeColor(currentPalette.color4)
+    var color5 = changeColor(currentPalette.color5)
+  } else {
     var color1 = createColor()
     var color2 = createColor()
     var color3 = createColor()
     var color4 = createColor()
     var color5 = createColor()
+  }
     createPalette(color1, color2, color3, color4, color5)
 }
 
