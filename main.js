@@ -36,35 +36,14 @@ var unlockedIcon = document.querySelectorAll('.unlocked-icon');
 var newPaletteBtn = document.querySelector(".new-palette-btn");
 var savePaletteBtn = document.querySelector(".save-palette-btn");
 
-for (var i = 0; i < toggleIcon.length; i++) {
-  toggleIcon[i].addEventListener("click", switchIcon);
-}
-
-function switchIcon(event) {
-  var displayedIcon = event.target;
-  console.log("currentPalette", currentPalette)
-  if (displayedIcon.classList.contains("unlocked-icon")) {
-    displayedIcon.src = "./assets/unlocked.png";
-    displayedIcon.alt = "unlocked icon";
-    displayedIcon.classList.remove("unlocked-icon");
-    displayedIcon.classList.add("locked-icon");
-  } else {
-    displayedIcon.src = "./assets/locked.png";
-    displayedIcon.alt = "locked icon";
-    displayedIcon.classList.remove("locked-icon");
-    displayedIcon.classList.add("unlocked-icon");
-  }
-} 
-
 // event listeners
-newPaletteBtn.addEventListener('click', randomPalette);
+newPaletteBtn.addEventListener("click", randomPalette);
 // boxes.addEventListener("click", toggleLock);
-// window.addEventListener('load', hideSavedPalettes);
 
 savePaletteBtn.addEventListener('click', function () {
   savePalette(currentPalette);
   displaySavedPalettes();
-  randomPalette();
+  updateLockStatus(event)
 });
 //global variables
 var currentPalette;
@@ -72,25 +51,9 @@ var currentPalette;
 var savedPalettes = [];
 
 for (var i = 0; i < toggleIcon.length; i++) {
-  toggleIcon[i].addEventListener('click', switchIcon);
+  toggleIcon[i].addEventListener('click', displaySwitchIcon);
 }
 
-function switchIcon(event) {
-  var displayedIcon = event.target;
-  if (displayedIcon.classList.contains('unlocked-icon')) {
-    displayedIcon.src = './assets/unlocked.png';
-    displayedIcon.alt = 'unlocked icon';
-    displayedIcon.classList.remove('unlocked-icon');
-    displayedIcon.classList.add('locked-icon');
-  } else {
-    displayedIcon.src = './assets/locked.png';
-    displayedIcon.alt = 'locked icon';
-    displayedIcon.classList.remove('locked-icon');
-    displayedIcon.classList.add('unlocked-icon');
-  }
-}
-
-// randomize hexcode
 function randomHex() {
   var hexcode = '';
 
@@ -124,16 +87,11 @@ function createColor() {
 }
 
 function changeColor(color) {
-//if there is an old color, let's modify that color based on locked value 
 if (color && color.isLocked) {
     return color;
   } 
-//else if there's not an old color, give it a new color
 return createColor()
 }
-
-
-//if the islocked property is false, generate new color. if true, don't generate color. the way were generating color is thru this function which is creating and returning a color object but the hex code property in this color object has the value of this other function randomhex and that's being invoked in thh Object. How can we prevent that function from running? if the islocked is true, we don't want the function randomhex to run. 
 
 function randomPalette() {
     var color1 = createColor()
@@ -157,6 +115,49 @@ function loadPalette() {
   hex3.innerText = currentPalette.color3.hexCode;
   hex4.innerText = currentPalette.color4.hexCode;
   hex5.innerText = currentPalette.color5.hexCode;
+}
+
+function displayIcon(displayedIcon, isLocked) {
+  if (isLocked) {
+    displayedIcon.src = "./assets/locked.png";
+    displayedIcon.alt = "locked icon";
+  } else {
+    displayedIcon.src = "./assets/unlocked.png";
+    displayedIcon.alt = "unlocked icon";
+  }
+}
+
+function switchIconClass(displayedIcon, isLocked) {
+  if (isLocked) {
+    displayedIcon.classList.remove("unlocked-icon");
+    displayedIcon.classList.add("locked-icon");
+  } else {
+    displayedIcon.classList.remove("locked-icon");
+    displayedIcon.classList.add("unlocked-icon");
+  }
+}
+
+function displaySwitchIcon(event) {
+  var displayedIcon = event.target;
+  console.log("currentPalette", currentPalette);
+  var unlocked = displayedIcon.classList.contains("unlocked-icon");
+  displayIcon(displayedIcon, unlocked);
+  switchIconClass(displayedIcon, unlocked);
+}
+
+function updateLockStatus(event) {
+  var clickedColorId = parseInt(event.target.getAttribute('id'));
+  if (currentPalette.color1.id === clickedColorId) {
+    currentPalette.color1.isLocked = true;
+  } else if (currentPalette.color2.id === clickedColorId) {
+    currentPalette.color2.isLocked = true;
+  } else if (currentPalette.color3.id === clickedColorId) {
+    currentPalette.color3.isLocked = true;
+  } else if (currentPalette.color4.id === clickedColorId) {
+    currentPalette.color4.isLocked = true;
+  } else if (currentPalette.color5.id === clickedColorId) {
+    currentPalette.color5.isLocked = true;
+  }
 }
 
 function savePalette(currentPalette) {
