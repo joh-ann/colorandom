@@ -43,7 +43,6 @@ newPaletteBtn.addEventListener("click", randomPalette);
 savePaletteBtn.addEventListener('click', function () {
   savePalette(currentPalette);
   displaySavedPalettes();
-  updateLockStatus(event)
 });
 //global variables
 var currentPalette;
@@ -94,11 +93,20 @@ return createColor()
 }
 
 function randomPalette() {
+  console.log(currentPalette);
+  if (currentPalette) {
+    var color1 = changeColor(currentPalette.color1)
+    var color2 = changeColor(currentPalette.color2)
+    var color3 = changeColor(currentPalette.color3)
+    var color4 = changeColor(currentPalette.color4)
+    var color5 = changeColor(currentPalette.color5)
+  } else {
     var color1 = createColor()
     var color2 = createColor()
     var color3 = createColor()
     var color4 = createColor()
     var color5 = createColor()
+  }
     createPalette(color1, color2, color3, color4, color5)
 }
 
@@ -146,6 +154,7 @@ function displaySwitchIcon(event) {
 }
 
 function updateLockStatus(event) {
+  console.log('CURRENT: Update Lock', currentPalette)
   var clickedColorId = parseInt(event.target.getAttribute('id'));
   if (currentPalette.color1.id === clickedColorId) {
     currentPalette.color1.isLocked = true;
