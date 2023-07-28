@@ -51,7 +51,7 @@ var currentPalette;
 var savedPalettes = [];
 
 for (var i = 0; i < toggleIcon.length; i++) {
-  toggleIcon[i].addEventListener('click', switchIcon);
+  toggleIcon[i].addEventListener('click', displaySwitchIcon);
 }
 
 function randomHex() {
@@ -141,14 +141,12 @@ function displaySwitchIcon(event) {
   var displayedIcon = event.target;
   console.log("currentPalette", currentPalette);
   var unlocked = displayedIcon.classList.contains("unlocked-icon");
-
   displayIcon(displayedIcon, unlocked);
   switchIconClass(displayedIcon, unlocked);
 }
 
 function updateLockStatus(event) {
   var clickedColorId = parseInt(event.target.getAttribute('id'));
-
   if (currentPalette.color1.id === clickedColorId) {
     currentPalette.color1.isLocked = true;
   } else if (currentPalette.color2.id === clickedColorId) {
@@ -161,7 +159,6 @@ function updateLockStatus(event) {
     currentPalette.color5.isLocked = true;
   }
 }
-
 
 function savePalette(currentPalette) {
   savedPalettes.push(currentPalette);
