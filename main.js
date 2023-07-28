@@ -172,10 +172,10 @@ function displaySavedPalettes() {
     var miniBoxesHTML = `<div class="mini-box-container">`; // store mini boxes HTML for current palette
 
     miniBoxesHTML += `<div class="mini-box" id="mini-1" style="background-color: ${palette.color1.hexCode};"></div>`;
-    miniBoxesHTML += `<div class="mini-box" id="mini-2"style="background-color: ${palette.color2.hexCode};"></div>`;
-    miniBoxesHTML += `<div class="mini-box" id="mini-3"style="background-color: ${palette.color3.hexCode};"></div>`;
-    miniBoxesHTML += `<div class="mini-box" id="mini-4"style="background-color: ${palette.color4.hexCode};"></div>`;
-    miniBoxesHTML += `<div class="mini-box" id="mini-5"style="background-color: ${palette.color5.hexCode};"></div>`;
+    miniBoxesHTML += `<div class="mini-box" id="mini-2" style="background-color: ${palette.color2.hexCode};"></div>`;
+    miniBoxesHTML += `<div class="mini-box" id="mini-3" style="background-color: ${palette.color3.hexCode};"></div>`;
+    miniBoxesHTML += `<div class="mini-box" id="mini-4" style="background-color: ${palette.color4.hexCode};"></div>`;
+    miniBoxesHTML += `<div class="mini-box" id="mini-5" style="background-color: ${palette.color5.hexCode};"></div>`;
     // append to newHTML
     newHTML += miniBoxesHTML;
     newHTML += `</div>`;
