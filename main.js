@@ -47,6 +47,7 @@ savePaletteBtn.addEventListener('click', function () {
   displaySavedPalettes();
   randomPalette();
 });
+savedPalettesView.addEventListener('click', displayDeletePalette);
 
 for (var i = 0; i < toggleIcon.length; i++) {
   toggleIcon[i].addEventListener('click', displaySwitchIcon);
@@ -164,16 +165,34 @@ function displaySavedPalettes() {
 
   for (var i = 0; i < savedPalettes.length; i++) {
     var palette = savedPalettes[i]; // get current savedpalette
-    var miniBoxesHTML = `<div class="mini-box-container">`; // store mini boxes HTML for current palette
+    var miniBoxesHTML = `<div class="mini-box-container" id="${savedPalettes[i].id}">`; // store mini boxes HTML for current palette
 
     miniBoxesHTML += `<div class="mini-box" id="mini-1" style="background-color: ${palette.color1.hexCode};"></div>`;
     miniBoxesHTML += `<div class="mini-box" id="mini-2" style="background-color: ${palette.color2.hexCode};"></div>`;
     miniBoxesHTML += `<div class="mini-box" id="mini-3" style="background-color: ${palette.color3.hexCode};"></div>`;
     miniBoxesHTML += `<div class="mini-box" id="mini-4" style="background-color: ${palette.color4.hexCode};"></div>`;
     miniBoxesHTML += `<div class="mini-box" id="mini-5" style="background-color: ${palette.color5.hexCode};"></div>`;
+    miniBoxesHTML += `<img src='assets/delete.png' class="delete-btn">`;
     // append to newHTML
     newHTML += miniBoxesHTML;
     newHTML += `</div>`;
   }
   savedPalettesView.innerHTML = newHTML;
+}
+
+function displayDeletePalette(event) {
+  var miniBoxes = event.target.parentElement; //targeting mini-box container
+  console.log('Event Target', event.target);
+  for (var i = 0; i < savedPalettes.length; i++) {
+    if (event.target.classList.contains('delete-btn')) {
+      miniBoxes.remove();
+    }
+  }
+}
+function deletePalette() {
+  // savedPalettes[i].splice(i, 1);
+  //event is a click on the delete icon
+  //remove the element of the array at this event location
+  //array is savedPalettes
+  // event.target.remove('mini-box-container');
 }
