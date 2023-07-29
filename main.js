@@ -29,8 +29,6 @@ var openingMessage = document.querySelector('.opening-message');
 
 // lock/unlock icons
 var toggleIcon = document.querySelectorAll('.toggle-icon');
-var lockedIcon = document.querySelectorAll('.locked-icon');
-var unlockedIcon = document.querySelectorAll('.unlocked-icon');
 
 //button
 var newPaletteBtn = document.querySelector('.new-palette-btn');
@@ -38,7 +36,9 @@ var savePaletteBtn = document.querySelector('.save-palette-btn');
 
 // event listeners
 newPaletteBtn.addEventListener('click', function () {
-  displaySavedPalettes();
+  if (savedPalettesView.innerHTML === '') {
+    openingMessage.classList.remove('hidden');
+  }
   randomPalette();
 });
 
@@ -48,14 +48,14 @@ savePaletteBtn.addEventListener('click', function () {
   randomPalette();
 });
 
+for (var i = 0; i < toggleIcon.length; i++) {
+  toggleIcon[i].addEventListener('click', displaySwitchIcon);
+}
+
 //global variables
 var currentPalette;
 
 var savedPalettes = [];
-
-for (var i = 0; i < toggleIcon.length; i++) {
-  toggleIcon[i].addEventListener('click', displaySwitchIcon);
-}
 
 function randomHex() {
   var hexcode = '';
@@ -155,27 +155,11 @@ function displaySwitchIcon(event) {
   displayIcon(displayedIcon, !isLocked);
 }
 
-function updateLockStatus(event) {
-  var clickedColorId = parseInt(event.target.getAttribute('id'));
-  if (currentPalette.color1.id === clickedColorId) {
-    currentPalette.color1.isLocked = true;
-  } else if (currentPalette.color2.id === clickedColorId) {
-    currentPalette.color2.isLocked = true;
-  } else if (currentPalette.color3.id === clickedColorId) {
-    currentPalette.color3.isLocked = true;
-  } else if (currentPalette.color4.id === clickedColorId) {
-    currentPalette.color4.isLocked = true;
-  } else if (currentPalette.color5.id === clickedColorId) {
-    currentPalette.color5.isLocked = true;
-  }
-}
-
 function savePalette(currentPalette) {
   savedPalettes.push(currentPalette);
 }
 
 function displaySavedPalettes() {
-  openingMessage.classList.add('hidden');
   var newHTML = ``;
 
   for (var i = 0; i < savedPalettes.length; i++) {
