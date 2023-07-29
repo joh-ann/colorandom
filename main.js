@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
-console.log("content loaded")
-  randomPalette()
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('content loaded');
+  randomPalette();
 });
 
 // query selectors
@@ -33,18 +33,21 @@ var lockedIcon = document.querySelectorAll('.locked-icon');
 var unlockedIcon = document.querySelectorAll('.unlocked-icon');
 
 //button
-var newPaletteBtn = document.querySelector(".new-palette-btn");
-var savePaletteBtn = document.querySelector(".save-palette-btn");
+var newPaletteBtn = document.querySelector('.new-palette-btn');
+var savePaletteBtn = document.querySelector('.save-palette-btn');
 
 // event listeners
-newPaletteBtn.addEventListener("click", randomPalette);
-// boxes.addEventListener("click", toggleLock);
+newPaletteBtn.addEventListener('click', function () {
+  displaySavedPalettes();
+  randomPalette();
+});
 
 savePaletteBtn.addEventListener('click', function () {
   savePalette(currentPalette);
   displaySavedPalettes();
-  randomPalette()
+  randomPalette();
 });
+
 //global variables
 var currentPalette;
 
@@ -64,6 +67,39 @@ function randomHex() {
   return `#${hexcode}`;
 }
 
+function createColor() {
+  var color = {
+    hexCode: randomHex(),
+    isLocked: false,
+    id: Date.now(),
+  };
+  return color;
+}
+
+function changeColor(color) {
+  if (color && color.isLocked) {
+    return color;
+  }
+  return createColor();
+}
+
+function randomPalette() {
+  if (currentPalette) {
+    var color1 = changeColor(currentPalette.color1);
+    var color2 = changeColor(currentPalette.color2);
+    var color3 = changeColor(currentPalette.color3);
+    var color4 = changeColor(currentPalette.color4);
+    var color5 = changeColor(currentPalette.color5);
+  } else {
+    var color1 = createColor();
+    var color2 = createColor();
+    var color3 = createColor();
+    var color4 = createColor();
+    var color5 = createColor();
+  }
+  createPalette(color1, color2, color3, color4, color5);
+}
+
 function createPalette(color1, color2, color3, color4, color5) {
   var palette = {
     id: Date.now(),
@@ -75,40 +111,6 @@ function createPalette(color1, color2, color3, color4, color5) {
   };
   currentPalette = palette;
   loadPalette();
-}
-
-function createColor() {
-  var color = {
-    hexCode: randomHex(),
-    isLocked: false,
-    id: Date.now(),
-  };
-  return color;
-}
-
-function changeColor(color) {
-if (color && color.isLocked) {
-    return color;
-  } 
-return createColor()
-}
-
-function randomPalette() {
-  console.log(currentPalette);
-  if (currentPalette) {
-    var color1 = changeColor(currentPalette.color1)
-    var color2 = changeColor(currentPalette.color2)
-    var color3 = changeColor(currentPalette.color3)
-    var color4 = changeColor(currentPalette.color4)
-    var color5 = changeColor(currentPalette.color5)
-  } else {
-    var color1 = createColor()
-    var color2 = createColor()
-    var color3 = createColor()
-    var color4 = createColor()
-    var color5 = createColor()
-  }
-    createPalette(color1, color2, color3, color4, color5)
 }
 
 function loadPalette() {
@@ -128,34 +130,24 @@ function loadPalette() {
 
 function displayIcon(displayedIcon, isLocked) {
   if (isLocked) {
-    displayedIcon.src = "./assets/locked.png";
-    displayedIcon.alt = "locked icon";
+    displayedIcon.src = './assets/locked.png';
+    displayedIcon.alt = 'locked icon';
+    displayedIcon.classList.remove('unlocked-icon');
+    displayedIcon.classList.add('locked-icon');
   } else {
-    displayedIcon.src = "./assets/unlocked.png";
-    displayedIcon.alt = "unlocked icon";
-  }
-}
-
-function switchIconClass(displayedIcon, isLocked) {
-  if (isLocked) {
-    displayedIcon.classList.remove("unlocked-icon");
-    displayedIcon.classList.add("locked-icon");
-  } else {
-    displayedIcon.classList.remove("locked-icon");
-    displayedIcon.classList.add("unlocked-icon");
+    displayedIcon.src = './assets/unlocked.png';
+    displayedIcon.alt = 'unlocked icon';
+    displayedIcon.classList.remove('locked-icon');
+    displayedIcon.classList.add('unlocked-icon');
   }
 }
 
 function displaySwitchIcon(event) {
   var displayedIcon = event.target;
-  console.log("currentPalette", currentPalette);
-  var unlocked = displayedIcon.classList.contains("unlocked-icon");
-  displayIcon(displayedIcon, unlocked);
-  switchIconClass(displayedIcon, unlocked);
+  //set a variable to hook to html data-color
 }
 
 function updateLockStatus(event) {
-  console.log('CURRENT: Update Lock', currentPalette)
   var clickedColorId = parseInt(event.target.getAttribute('id'));
   if (currentPalette.color1.id === clickedColorId) {
     currentPalette.color1.isLocked = true;
