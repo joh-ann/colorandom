@@ -135,6 +135,7 @@ function displayIcon(displayedIcon, isLocked) {
     displayedIcon.classList.remove('unlocked-icon');
     displayedIcon.classList.add('locked-icon');
   } else {
+    //!isLocked
     displayedIcon.src = './assets/unlocked.png';
     displayedIcon.alt = 'unlocked icon';
     displayedIcon.classList.remove('locked-icon');
@@ -143,8 +144,15 @@ function displayIcon(displayedIcon, isLocked) {
 }
 
 function displaySwitchIcon(event) {
-  var displayedIcon = event.target;
+  var displayedIcon = event.target; //clicked color1
   //set a variable to hook to html data-color
+  var clickedBoxColor = displayedIcon.getAttribute('data-color'); //i.e. evaluates us color1
+  //set a variable to assign the isLocked to current status of isLocked on color1
+  var isLocked = currentPalette[clickedBoxColor].isLocked; //i.e. evaluates to true
+  //color1 coming in here - so currentPallet.color1.isLocked = true
+  currentPalette[clickedBoxColor].isLocked = !isLocked; //i.e. color1 isLocked is now false
+
+  displayIcon(displayedIcon, !isLocked);
 }
 
 function updateLockStatus(event) {
