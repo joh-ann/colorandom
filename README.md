@@ -21,8 +21,11 @@ We spent 20 hours (80 person hours) working on this project. We are in week four
 ### Contributors:
 
 [Ann Hochworter](https://github.com/AHochworter)
+
 [Bobby Steckline](https://github.com/rjsturing)
+
 [Johann Dee](https://github.com/joh-ann)
+
 [Devin Altobello](https://github.com/alto-fx)
 
 ### Learning Goals:
