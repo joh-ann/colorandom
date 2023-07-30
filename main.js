@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-  randomPalette();
+  newPalette();
 });
 
-// query selectors
-// boxes
+// Query Selectors👇
+// Boxes
 var box1 = document.querySelector('#box-1');
 var box2 = document.querySelector('#box-2');
 var box3 = document.querySelector('#box-3');
@@ -15,7 +15,7 @@ var mini3 = document.querySelector('#mini-3');
 var mini4 = document.querySelector('#mini-4');
 var mini5 = document.querySelector('#mini-5');
 
-// hexcodes
+// Hexcodes
 var hex1 = document.querySelector('#hex-1');
 var hex2 = document.querySelector('#hex-2');
 var hex3 = document.querySelector('#hex-3');
@@ -26,25 +26,25 @@ var aside = document.querySelector('.saved-palettes-wrapper');
 var savedPalettesView = document.querySelector('.saved-palettes');
 var openingMessage = document.querySelector('.opening-message');
 
-// lock/unlock icons
+// Lock/Unlock Icons
 var toggleIcon = document.querySelectorAll('.toggle-icon');
 
-//button
+// Button
 var newPaletteBtn = document.querySelector('.new-palette-btn');
 var savePaletteBtn = document.querySelector('.save-palette-btn');
 
-// event listeners
+// Event Listeners👇
 newPaletteBtn.addEventListener('click', function () {
   if (savedPalettesView.innerHTML === '') {
     openingMessage.classList.remove('hidden');
   }
-  randomPalette();
+  newPalette();
 });
 
 savePaletteBtn.addEventListener('click', function () {
   savePalette(currentPalette);
   displaySavedPalettes();
-  randomPalette();
+  newPalette();
 });
 savedPalettesView.addEventListener('click', displayDeletePalette);
 
@@ -52,14 +52,14 @@ for (var i = 0; i < toggleIcon.length; i++) {
   toggleIcon[i].addEventListener('click', displaySwitchIcon);
 }
 
-//global variables
+// Global Variables👇
 var currentPalette;
 
 var savedPalettes = [];
 
+// Event Handlers and Functions👇
 function randomHex() {
   var hexcode = '';
-
   var hexParts = 'ABCDEF0123456789';
 
   for (var i = 0; i < 6; i++)
@@ -83,7 +83,7 @@ function changeColor(color) {
   return createColor();
 }
 
-function randomPalette() {
+function newPalette() {
   if (currentPalette) {
     var color1 = changeColor(currentPalette.color1);
     var color2 = changeColor(currentPalette.color2);
@@ -143,14 +143,10 @@ function displayIcon(displayedIcon, isLocked) {
 }
 
 function displaySwitchIcon(event) {
-  var displayedIcon = event.target; //clicked color1
-  //set a variable to hook to html data-color
-  var clickedBoxColor = displayedIcon.getAttribute('data-color'); //i.e. evaluates us color1
-  //set a variable to assign the isLocked to current status of isLocked on color1
-  var isLocked = currentPalette[clickedBoxColor].isLocked; //i.e. evaluates to true
-  //color1 coming in here - so currentPallet.color1.isLocked = true
-  currentPalette[clickedBoxColor].isLocked = !isLocked; //i.e. color1 isLocked is now false
-
+  var displayedIcon = event.target;
+  var clickedBoxColor = displayedIcon.getAttribute('data-color');
+  var isLocked = currentPalette[clickedBoxColor].isLocked;
+  currentPalette[clickedBoxColor].isLocked = !isLocked;
   displayIcon(displayedIcon, !isLocked);
 }
 
@@ -162,8 +158,8 @@ function displaySavedPalettes() {
   var newHTML = ``;
 
   for (var i = 0; i < savedPalettes.length; i++) {
-    var palette = savedPalettes[i]; // get current savedpalette
-    var miniBoxesHTML = `<div class="mini-box-container" id="${savedPalettes[i].id}">`; // store mini boxes HTML for current palette
+    var palette = savedPalettes[i];
+    var miniBoxesHTML = `<div class="mini-box-container" id="${savedPalettes[i].id}">`;
 
     miniBoxesHTML += `<div class="mini-box" id="mini-1" style="background-color: ${palette.color1.hexCode};"></div>`;
     miniBoxesHTML += `<div class="mini-box" id="mini-2" style="background-color: ${palette.color2.hexCode};"></div>`;
@@ -171,7 +167,7 @@ function displaySavedPalettes() {
     miniBoxesHTML += `<div class="mini-box" id="mini-4" style="background-color: ${palette.color4.hexCode};"></div>`;
     miniBoxesHTML += `<div class="mini-box" id="mini-5" style="background-color: ${palette.color5.hexCode};"></div>`;
     miniBoxesHTML += `<img src='assets/delete.png' alt="x shaped delete icon" class="delete-btn">`;
-    // append to newHTML
+
     newHTML += miniBoxesHTML;
     newHTML += `</div>`;
   }
@@ -188,10 +184,10 @@ function deleteSavedPalette(paletteId) {
 }
 
 function displayDeletePalette(event) {
-  var deleteBtn = event.target.closest(".delete-btn");
+  var deleteBtn = event.target.closest('.delete-btn');
   if (deleteBtn) {
-    var miniBoxContainer = deleteBtn.closest(".mini-box-container");
-    var paletteId = parseInt(miniBoxContainer.getAttribute("id"));
+    var miniBoxContainer = deleteBtn.closest('.mini-box-container');
+    var paletteId = parseInt(miniBoxContainer.getAttribute('id'));
     miniBoxContainer.remove();
     deleteSavedPalette(paletteId);
   }
