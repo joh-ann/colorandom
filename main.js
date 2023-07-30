@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('content loaded');
   randomPalette();
 });
 
@@ -115,7 +114,6 @@ function createPalette(color1, color2, color3, color4, color5) {
 }
 
 function loadPalette() {
-  console.log(currentPalette);
   box1.style.backgroundColor = currentPalette.color1.hexCode;
   box2.style.backgroundColor = currentPalette.color2.hexCode;
   box3.style.backgroundColor = currentPalette.color3.hexCode;
@@ -172,7 +170,7 @@ function displaySavedPalettes() {
     miniBoxesHTML += `<div class="mini-box" id="mini-3" style="background-color: ${palette.color3.hexCode};"></div>`;
     miniBoxesHTML += `<div class="mini-box" id="mini-4" style="background-color: ${palette.color4.hexCode};"></div>`;
     miniBoxesHTML += `<div class="mini-box" id="mini-5" style="background-color: ${palette.color5.hexCode};"></div>`;
-    miniBoxesHTML += `<img src='assets/delete.png' class="delete-btn">`;
+    miniBoxesHTML += `<img src='assets/delete.png' alt="x shaped delete icon" class="delete-btn">`;
     // append to newHTML
     newHTML += miniBoxesHTML;
     newHTML += `</div>`;
@@ -180,19 +178,24 @@ function displaySavedPalettes() {
   savedPalettesView.innerHTML = newHTML;
 }
 
-function displayDeletePalette(event) {
-  var miniBoxes = event.target.parentElement; //targeting mini-box container
-  console.log('Event Target', event.target);
-  for (var i = 0; i < savedPalettes.length; i++) {
-    if (event.target.classList.contains('delete-btn')) {
-      miniBoxes.remove();
+function deleteSavedPalette(event) {
+  if (event.target.classList.contains("delete-btn")) {
+    var miniBoxContainer = event.target.closest(".mini-box-container")
+    var paletteId = miniBoxContainer.getAttribute("id")
+    var paletteIndex = -1
+
+    for (var i = 0; i < savedPalettes.length; i++) {
+      if (savedPalettes[i].id === parseInt(paletteId)) {
+        savedPalettes.splice(paletteIndex, 1);
+      }
     }
   }
 }
-function deletePalette() {
-  // savedPalettes[i].splice(i, 1);
-  //event is a click on the delete icon
-  //remove the element of the array at this event location
-  //array is savedPalettes
-  // event.target.remove('mini-box-container');
+
+function displayDeletePalette(event) {
+  var miniBoxes = event.target.closest(".mini-box-container");
+    if (event.target.classList.contains('delete-btn')) {
+      miniBoxes.remove();
+  }
+  deleteSavedPalette(event)
 }
