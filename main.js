@@ -178,24 +178,21 @@ function displaySavedPalettes() {
   savedPalettesView.innerHTML = newHTML;
 }
 
-function deleteSavedPalette(event) {
-  if (event.target.classList.contains("delete-btn")) {
-    var miniBoxContainer = event.target.closest(".mini-box-container")
-    var paletteId = miniBoxContainer.getAttribute("id")
-    var paletteIndex = -1
-
-    for (var i = 0; i < savedPalettes.length; i++) {
-      if (savedPalettes[i].id === parseInt(paletteId)) {
-        savedPalettes.splice(paletteIndex, 1);
-      }
+function deleteSavedPalette(paletteId) {
+  for (var i = 0; i < savedPalettes.length; i++) {
+    if (savedPalettes[i].id === paletteId) {
+      savedPalettes.splice(i, 1);
     }
   }
+  displaySavedPalettes();
 }
 
 function displayDeletePalette(event) {
-  var miniBoxes = event.target.closest(".mini-box-container");
-    if (event.target.classList.contains('delete-btn')) {
-      miniBoxes.remove();
+  var deleteBtn = event.target.closest(".delete-btn");
+  if (deleteBtn) {
+    var miniBoxContainer = deleteBtn.closest(".mini-box-container");
+    var paletteId = parseInt(miniBoxContainer.getAttribute("id"));
+    miniBoxContainer.remove();
+    deleteSavedPalette(paletteId);
   }
-  deleteSavedPalette(event)
 }
