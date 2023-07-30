@@ -17,7 +17,6 @@ Welcome to our exciting new color palette generator! Get ready to unleash your c
 ### Context:
 
 We spent 20 hours (80 person hours) working on this project. We are in week four of Mod 1.
-Contributors:
 
 ### Contributors:
 
