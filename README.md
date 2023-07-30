@@ -12,6 +12,7 @@ Welcome to our exciting new color palette generator! Get ready to unleash your c
 4. Enjoy!
 
 ### Preview of App:
+![colorandom](https://github.com/alto-fx/coloRandom/assets/126308696/b6dc005d-e1a8-4309-88f3-8d913b4a77e8)
 
 ### Context:
 
