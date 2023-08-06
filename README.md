@@ -6,10 +6,8 @@ Welcome to our exciting new color palette generator! Get ready to unleash your c
 
 ### Installation Instructions:
 
-1. Git clone this repo to your local machine
-2. Cd into that directory
-3. Enter the command open index.html to open the browser
-4. Enjoy!
+1. View on [GitHub Pages](https://joh-ann.github.io/colorandom-group/)
+2. Enjoy!
 
 ### Preview of App:
 ![colorandom](https://github.com/alto-fx/coloRandom/assets/126308696/b6dc005d-e1a8-4309-88f3-8d913b4a77e8)
