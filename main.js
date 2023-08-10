@@ -46,7 +46,13 @@ savePaletteBtn.addEventListener('click', function () {
   displaySavedPalettes();
   newPalette();
 });
-savedPalettesView.addEventListener('click', displayDeletePalette);
+savedPalettesView.addEventListener('click', function(event) {
+  if (event.target.classList.contains("delete-btn")) {
+    displayDeletePalette(event);
+  } else if (event.target.classList.contains("mini-box")) {
+    restorePalette(event);
+  }
+})
 
 for (var i = 0; i < toggleIcon.length; i++) {
   toggleIcon[i].addEventListener('click', displaySwitchIcon);
@@ -180,7 +186,6 @@ function deleteSavedPalette(paletteId) {
       savedPalettes.splice(i, 1);
     }
   }
-  displaySavedPalettes();
 }
 
 function displayDeletePalette(event) {
@@ -191,4 +196,20 @@ function displayDeletePalette(event) {
     miniBoxContainer.remove();
     deleteSavedPalette(paletteId);
   }
+}
+
+function restorePalette(event) {
+  var miniPalette = event.target.closest(".mini-box-container");
+  var storedId = miniPalette.id;
+  for (var i = 0; i < savedPalettes.length; i++) {
+    if (storedId == savedPalettes[i].id) {
+      currentPalette = savedPalettes[i];
+      var color1 = savedPalettes[i].color1.hexCode;
+      var color2 = savedPalettes[i].color2.hexCode;
+      var color3 = savedPalettes[i].color3.hexCode;
+      var color4 = savedPalettes[i].color4.hexCode;
+      var color5 = savedPalettes[i].color5.hexCode;
+    }
+  }
+  loadPalette(color1, color2, color3, color4, color5);
 }

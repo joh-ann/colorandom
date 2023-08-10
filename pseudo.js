@@ -33,3 +33,10 @@
     // if palette is removed, remove from data model
     // assign delete button to id?
     // palette removed from the page
+
+// iteration 5 - editing palettes
+// restore/reload a saved palette
+// click on the saved palette, grab the mini box container id
+// replace current palette with saved hexcodes
+// unlock all colors
+// when we save new palette, original should still be there
