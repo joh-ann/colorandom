@@ -96,6 +96,10 @@ h2 {
   margin-bottom: 24px;
 }
 
+.mini-box-container:hover {
+  cursor: pointer;
+}
+
 .mini-box {
   height: 15px;
   width: 15px;
