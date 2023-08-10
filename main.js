@@ -46,11 +46,15 @@ savePaletteBtn.addEventListener('click', function () {
   displaySavedPalettes();
   newPalette();
 });
+
 savedPalettesView.addEventListener('click', function(event) {
   if (event.target.classList.contains("delete-btn")) {
     displayDeletePalette(event);
   } else if (event.target.classList.contains("mini-box")) {
     restorePalette(event);
+  }
+  if(savedPalettesView.innerHTML === '') {
+    savedPalettesView.innerHTML = `<p class="opening-message">No Saved Palettes Yet!</p>`
   }
 })
 
