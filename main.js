@@ -53,7 +53,7 @@ savedPalettesView.addEventListener('click', function(event) {
   } else if (event.target.classList.contains("mini-box")) {
     restorePalette(event);
   }
-  if(savedPalettesView.innerHTML === '') {
+  if (savedPalettesView.innerHTML === '') {
     savedPalettesView.innerHTML = `<p class="opening-message">No Saved Palettes Yet!</p>`
   }
 })
