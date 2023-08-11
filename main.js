@@ -28,6 +28,8 @@ var openingMessage = document.querySelector('.opening-message');
 
 // Lock/Unlock Icons
 var toggleIcon = document.querySelectorAll('.toggle-icon');
+var lockedIcons = document.querySelectorAll('.locked-icon')
+var unlockedIcons = document.querySelectorAll('.unlocked-icon')
 
 // Button
 var newPaletteBtn = document.querySelector('.new-palette-btn');
@@ -52,6 +54,7 @@ savedPalettesView.addEventListener('click', function(event) {
     displayDeletePalette(event);
   } else if (event.target.classList.contains("mini-box")) {
     restorePalette(event);
+    resetLocks();
   }
   if (savedPalettesView.innerHTML === '') {
     savedPalettesView.innerHTML = `<p class="opening-message">No Saved Palettes Yet!</p>`
@@ -162,6 +165,7 @@ function displaySwitchIcon(event) {
 
 function savePalette(currentPalette) {
   savedPalettes.push(currentPalette);
+  resetLocks();
 }
 
 function displaySavedPalettes() {
@@ -216,4 +220,21 @@ function restorePalette(event) {
     }
   }
   loadPalette(color1, color2, color3, color4, color5);
+  resetLocks();
+}
+
+function resetLocks() {
+  lockedIcons.forEach(function(icon) {
+    icon.src = './assets/unlocked.png';
+    icon.alt = 'unlocked icon';
+    icon.classList.remove('locked-icon');
+    icon.classList.add('unlocked-icon');
+  });
+
+  unlockedIcons.forEach(function(icon) {
+    icon.src = './assets/unlocked.png';
+    icon.alt = 'unlocked icon';
+    icon.classList.remove('locked-icon');
+    icon.classList.add('unlocked-icon');
+  });
 }
