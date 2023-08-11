@@ -47,6 +47,7 @@ savePaletteBtn.addEventListener('click', function () {
   savePalette(currentPalette);
   displaySavedPalettes();
   newPalette();
+  resetLocks();
 });
 
 savedPalettesView.addEventListener('click', function(event) {
@@ -219,8 +220,8 @@ function restorePalette(event) {
       var color5 = savedPalettes[i].color5.hexCode;
     }
   }
-  loadPalette(color1, color2, color3, color4, color5);
   resetLocks();
+  loadPalette(color1, color2, color3, color4, color5);
 }
 
 function resetLocks() {
@@ -237,4 +238,12 @@ function resetLocks() {
     icon.classList.remove('locked-icon');
     icon.classList.add('unlocked-icon');
   });
+
+    if (currentPalette) {
+    currentPalette.color1.isLocked = false;
+    currentPalette.color2.isLocked = false;
+    currentPalette.color3.isLocked = false;
+    currentPalette.color4.isLocked = false;
+    currentPalette.color5.isLocked = false;
+    }
 }
