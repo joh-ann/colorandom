@@ -14,7 +14,7 @@ Welcome to our exciting new color palette generator! Get ready to unleash your c
 
 ### Context:
 
-We spent 20 hours (80 person hours) working on this project. We are in week four of Mod 1.
+We spent 20 hours (80 person hours) working on this project. We are in week four of Mod 1 of Turing School.
 
 ### Contributors:
 
@@ -40,7 +40,7 @@ We spent 20 hours (80 person hours) working on this project. We are in week four
 - Practice reading and understanding code written by other team members
 - Document changes with atomic commits and code reviews during standups
 
-Tech used: Github, Terminal, VS Code, Dev Tools, Javascript, CSS, and HTML.
+Technologies used: GitHub, Terminal, VS Code, Dev Tools, JavaScript, CSS, and HTML.
 Resources used: MDN Documents, Google, Stack Overflow.
 
 ### Wins + Challenges:
