@@ -6,7 +6,7 @@ Welcome to our exciting new color palette generator! Get ready to unleash your c
 
 ### Installation Instructions:
 
-1. View on [GitHub Pages](https://joh-ann.github.io/colorandom-group/)
+1. View on [GitHub Pages](https://joh-ann.github.io/colorandom/)
 2. Enjoy!
 
 ### Preview of App:
