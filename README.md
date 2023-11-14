@@ -1,22 +1,54 @@
-# ColoRandom Group Project
+<div align="center">
+  
+# Colorandom
+  
+### [Deployed Link](https://joh-ann.github.io/colorandom/)
 
-### Abstract:
+</div>
 
-Welcome to our exciting new color palette generator! Get ready to unleash your creativity and have fun playing around with colors! Our app lets you generate random and unique color palettes with just a click. You can easily save your favorite palettes and even lock in specific colors you love. With a user-friendly interface and interactive icons, creating stunning color combinations has never been easier. This user-friendly app allows our users to generate and save their own color palette. Their saved palettes display on the right column of the webpage. Until a user has saved a palette, a message will be displayed letting them know there are no saved palettes yet. Users can delete a previously saved palette of their choice by clicking the “X” to the right of each saved palette.
+### Overview
+This repository contains a sleek and user-friendly color palette generator. One-click randomization, easy palette saving, and intuitive customization.
 
-### Installation Instructions:
+### Preview
+![Colorandom](https://github.com/alto-fx/coloRandom/assets/126308696/b6dc005d-e1a8-4309-88f3-8d913b4a77e8)
 
-1. View on [GitHub Pages](https://joh-ann.github.io/colorandom/)
-2. Enjoy!
+### Tech Stack
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black)
+![HTML](https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=GitHub&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC.svg?style=for-the-badge&logo=Visual-Studio-Code&logoColor=white)
 
-### Preview of App:
-![colorandom](https://github.com/alto-fx/coloRandom/assets/126308696/b6dc005d-e1a8-4309-88f3-8d913b4a77e8)
+### Resources
+![MDN Web Docs](https://img.shields.io/badge/MDN%20Web%20Docs-000000.svg?style=for-the-badge&logo=MDN-Web-Docs&logoColor=white)
+![Google](https://img.shields.io/badge/Google-4285F4.svg?style=for-the-badge&logo=Google&logoColor=white)
 
-### Context:
+### Learning Goals
+- Establish a DTR for the project
+- Communicate and troubleshoot effectively as a team
+- Ensure all team members can contribute
+- Write clean, DRY JavaScript
+- Use semantic HTML and efficient CSS for a user-friendly interface
+- Build functionality with SRP-compliant functions
+- Manipulate the page, adding, removing, and updating elements in the Data Model and on the DOM
+- Deepen understanding of the HTML, CSS, and JavaScript connection
+- Collaboratively write and understand code
+- Document changes with atomic commits and code reviews during standups
 
-We spent 20 hours (80 person hours) working on this project. We are in week four of Mod 1 of Turing School.
+### Wins
+- Leveraged diverse strengths for mutual learning and skill reinforcement
+- Practiced and applied pseudocode, enhancing problem-solving frameworks
+- Strengthened network through research, reaching out to mentors, peers, and cohort members
+- Improved troubleshooting skills using console.log, Dev Tools, and targeted questions
+- Successfully managed collaboration across three different time zones
 
-### Contributors:
+### Challenges
+- Navigated challenges in establishing group git flow practices
+- Successfully managed collaborative efforts across three time zones
+- Addressed the integration of icons (.png's) with the data model
+- Overcame obstacles in abstracting objects and refining the data model for scalability using helper functions
+
+### Contributors
 
 [Ann Hochworter](https://github.com/AHochworter)
 
@@ -25,37 +57,3 @@ We spent 20 hours (80 person hours) working on this project. We are in week four
 [Johann Dee](https://github.com/joh-ann)
 
 [Devin Altobello](https://github.com/alto-fx)
-
-### Learning Goals:
-
-- Collectively establish a DTR for the project
-- Communicate, troubleshoot, and plan effectively as a team
-- Ensure that all team members are able to be heard and contribute throughout the project
-- Write clean, DRY JavaScript
-- Write semantic HTML, and efficient CSS to form a usable user interface
-- Build out functionality using functions that follow SRP
-- Manipulate the page after it has loaded: adding, removing, and updating elements, first in the Data Model and then on the DOM
-- Deepen our understanding of the connection between HTML, CSS, and JavaScript
-- Write code collaboratively
-- Practice reading and understanding code written by other team members
-- Document changes with atomic commits and code reviews during standups
-
-Technologies used: GitHub, Terminal, VS Code, Dev Tools, JavaScript, CSS, and HTML.
-Resources used: MDN Documents, Google, Stack Overflow.
-
-### Wins + Challenges:
-
-Wins:
-
-- We each brought different strengths to the project, which gave each of us an opportunity to reinforce our knowledge and learn new techniques.
-- Practicing and enacting pseudocode was an excellent experience in being able to create a problem-solving framework.
-- In addition to researching when we were stuck, we reinforced our network within Turing by reaching out to mentors, fellow students and cohort members.
-- We became better at troubleshooting by using console.log, inspecting elements in Dev Tools and drawing on our existing knowledge to formulate targeted/searchable questions. Using these tools really helped us with our rubber-ducking skills.
-- Managing collaborative time across three time zones.
-
-Challenges:
-
-- Establishing our git flow practice as a group.
-- Managing collaborative time across three time zones.
-- Connecting the icons(.png’s) to our data model
-- Managing the abstraction of objects and the data model and dialing back our mess and making it more scalable with helper functions.
